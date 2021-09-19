@@ -22,7 +22,7 @@ int main()
 
 void drawBoard(string Data[]) {
 	system ( "CLS" );
-	gkDebug(Data);
+	// gkDebug(Data);
 	cout << endl << "  gk's TicTacToe" << endl << endl;
 	cout << "   " << Data[0] << "  |  " << Data[1] << "  |  " << Data[2] << endl;
 	cout << "  " << "---" << "-+-" << "---" << "-+-" << "---" << endl;
