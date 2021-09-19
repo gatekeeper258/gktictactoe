@@ -16,10 +16,10 @@ int main()
 	string Data[size] = { " ", " ", " ", " ", " ", " ", " ", " ", " "};
 	bool gameComplete = false;
 
-	while (!gameComplete) {
+	while (gameComplete == false) {
 		drawBoard(Data);
 		gameComplete = checkWinner(Data);
-		if (!gameComplete) {
+		if (gameComplete == false) {
 			userChoice(Data);
 		}
 	}
@@ -27,10 +27,10 @@ int main()
 } // main
 
 void drawBoard(string Data[]) {
-	//system ( "CLS" );
-	// gkDebug(Data);
+	system ( "CLS" );
+	gkDebug(Data);
 	cout << endl << "  gk's TicTacToe" << endl << endl;
-	cout << "   " << Data[7] << "  |  " << Data[8] << "  |  " << Data[9] << endl;
+	cout << "   " << Data[6] << "  |  " << Data[7] << "  |  " << Data[8] << endl;
 	cout << "  " << "---" << "-+-" << "---" << "-+-" << "---" << endl;
 	cout << "   " << Data[3] << "  |  " << Data[4] << "  |  " << Data[5] << endl;
 	cout << "  " << "---" << "-+-" << "---" << "-+-" << "---" << endl;
@@ -60,9 +60,6 @@ void gkDebug(string Data[]) {
 } // gkDebug
 
 bool winCondition(string Data[], string test) {
-	test = "X";
-
-	// cout << "incoming complete: " << test << endl;
 	if ((Data[1 - 1] == test) && (Data[2 - 1] == test) && (Data[3 - 1] == test)) {
 		gameOver();
 		return(true);
@@ -101,11 +98,11 @@ void gameOver() {
 bool checkWinner(string Data[]) {
 	if (winCondition(Data, "X")) {
 		cout << "Player X has won!";
-		return(1);
+		return(true);
 	}else if (winCondition(Data, "O")) {
 		cout << "Player O has won!";
-		return(1);
+		return(true);
 	} else {
-		return(0);
+		return(false);
 	}
 } // checkWinner
