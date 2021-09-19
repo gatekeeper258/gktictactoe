@@ -6,6 +6,9 @@ using namespace std;
 void drawBoard(string Data[]);
 void userChoice(string Data[]);
 void gkDebug(string Data[]);
+bool winCondition(string Data[]);
+void gameOver();
+
 
 int main()
 {
@@ -16,6 +19,8 @@ int main()
 	while (!gameComplete) {
 		drawBoard(Data);
 		userChoice(Data);
+		gameComplete = winCondition(Data);
+		cout << "Value of gameComplete: " << gameComplete;
 	}
 	return (0);
 } // main
@@ -52,3 +57,48 @@ void gkDebug(string Data[]) {
 	}
 	cout << "|" << endl << " *-------------------*" << endl;
 } // gkDebug
+
+bool winCondition(string Data[]) {
+	string test;
+
+	for (size_t i = 0; i < 2; i++) {
+		if (i=0) {
+			test = "X";
+		} else if (i=1) {
+			test="O";
+		}
+		cout << "Test is: " << test;
+		if ((Data[1] == test) && (Data[2] == test) && (Data[3] == test)) {
+			gameOver();
+			return(true);
+		} else if ((Data[4] == test) && (Data[5] == test) && (Data[6] == test)) {
+			gameOver();
+			return(true);
+		} else if ((Data[7] == test) && (Data[8] == test) && (Data[9] == test)) {
+			gameOver();
+			return(true);
+		} else if ((Data[1] == test) && (Data[4] == test) && (Data[7] == test)) {
+			gameOver();
+			return(true);
+		} else if ((Data[2] == test) && (Data[5] == test) && (Data[8] == test)) {
+			gameOver();
+			return(true);
+		} else if ((Data[3] == test) && (Data[6] == test) && (Data[9] == test)) {
+			gameOver();
+			return(true);
+		} else if ((Data[1] == test) && (Data[5] == test) && (Data[9] == test)) {
+			gameOver();
+			return(true);
+		} else if ((Data[7] == test) && (Data[5] == test) && (Data[3] == test)) {
+			gameOver();
+			return(true);
+		} else {
+			return(false);
+		}
+	}
+} // winCondition
+
+void gameOver() {
+	cout << endl << "  Victory!!!  ";
+	cout << '\a';
+}         // gameOver
