@@ -43,7 +43,7 @@ void userChoice(string Data[]) {
 } // userChoice
 void gkDebug(string Data[]) {
 	cout << endl;
-	cout << " *-------------------*" << endl;
+	cout << " *-------------------* " << endl;
 	cout << " |Array Debug Tracker|" << endl;
 	cout << " | 1 2 3 4 5 6 7 8 9 |" << endl;
 	cout << " | ";
