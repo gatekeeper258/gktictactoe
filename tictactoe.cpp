@@ -6,9 +6,9 @@ using namespace std;
 void drawBoard(string Data[]);
 void userChoice(string Data[]);
 void gkDebug(string Data[]);
-bool winCondition(string Data[]);
+bool winCondition(string Data[], string test);
 void gameOver();
-
+bool checkWinner(string Data[]);
 
 int main()
 {
@@ -18,22 +18,23 @@ int main()
 
 	while (!gameComplete) {
 		drawBoard(Data);
-		userChoice(Data);
-		gameComplete = winCondition(Data);
-		cout << "Value of gameComplete: " << gameComplete;
+		gameComplete = checkWinner(Data);
+		if (!gameComplete) {
+			userChoice(Data);
+		}
 	}
 	return (0);
 } // main
 
 void drawBoard(string Data[]) {
-	system ( "CLS" );
+	//system ( "CLS" );
 	// gkDebug(Data);
 	cout << endl << "  gk's TicTacToe" << endl << endl;
-	cout << "   " << Data[0] << "  |  " << Data[1] << "  |  " << Data[2] << endl;
+	cout << "   " << Data[7] << "  |  " << Data[8] << "  |  " << Data[9] << endl;
 	cout << "  " << "---" << "-+-" << "---" << "-+-" << "---" << endl;
 	cout << "   " << Data[3] << "  |  " << Data[4] << "  |  " << Data[5] << endl;
 	cout << "  " << "---" << "-+-" << "---" << "-+-" << "---" << endl;
-	cout << "   " << Data[6] << "  |  " << Data[7] << "  |  " << Data[8] << endl;
+	cout << "   " << Data[0] << "  |  " << Data[1] << "  |  " << Data[2] << endl;
 } // drawBoard
 void userChoice(string Data[]) {
 	int choice;
@@ -58,47 +59,53 @@ void gkDebug(string Data[]) {
 	cout << "|" << endl << " *-------------------*" << endl;
 } // gkDebug
 
-bool winCondition(string Data[]) {
-	string test;
+bool winCondition(string Data[], string test) {
+	test = "X";
 
-	for (size_t i = 0; i < 2; i++) {
-		if (i=0) {
-			test = "X";
-		} else if (i=1) {
-			test="O";
-		}
-		cout << "Test is: " << test;
-		if ((Data[1] == test) && (Data[2] == test) && (Data[3] == test)) {
-			gameOver();
-			return(true);
-		} else if ((Data[4] == test) && (Data[5] == test) && (Data[6] == test)) {
-			gameOver();
-			return(true);
-		} else if ((Data[7] == test) && (Data[8] == test) && (Data[9] == test)) {
-			gameOver();
-			return(true);
-		} else if ((Data[1] == test) && (Data[4] == test) && (Data[7] == test)) {
-			gameOver();
-			return(true);
-		} else if ((Data[2] == test) && (Data[5] == test) && (Data[8] == test)) {
-			gameOver();
-			return(true);
-		} else if ((Data[3] == test) && (Data[6] == test) && (Data[9] == test)) {
-			gameOver();
-			return(true);
-		} else if ((Data[1] == test) && (Data[5] == test) && (Data[9] == test)) {
-			gameOver();
-			return(true);
-		} else if ((Data[7] == test) && (Data[5] == test) && (Data[3] == test)) {
-			gameOver();
-			return(true);
-		} else {
-			return(false);
-		}
+	// cout << "incoming complete: " << test << endl;
+	if ((Data[1 - 1] == test) && (Data[2 - 1] == test) && (Data[3 - 1] == test)) {
+		gameOver();
+		return(true);
+	} else if ((Data[4 - 1] == test) && (Data[5 - 1] == test) && (Data[6 - 1] == test)) {
+		gameOver();
+		return(true);
+	} else if ((Data[7 - 1] == test) && (Data[8 - 1] == test) && (Data[9 - 1] == test)) {
+		gameOver();
+		return(true);
+	} else if ((Data[1 - 1] == test) && (Data[4 - 1] == test) && (Data[7 - 1] == test)) {
+		gameOver();
+		return(true);
+	} else if ((Data[2 - 1] == test) && (Data[5 - 1] == test) && (Data[8 - 1] == test)) {
+		gameOver();
+		return(true);
+	} else if ((Data[3 - 1] == test) && (Data[6 - 1] == test) && (Data[9 - 1] == test)) {
+		gameOver();
+		return(true);
+	} else if ((Data[1 - 1] == test) && (Data[5 - 1] == test) && (Data[9 - 1] == test)) {
+		gameOver();
+		return(true);
+	} else if ((Data[7 - 1] == test) && (Data[5 - 1] == test) && (Data[3 - 1] == test)) {
+		gameOver();
+		return(true);
+	} else {
+		return(false);
 	}
 } // winCondition
+
 
 void gameOver() {
 	cout << endl << "  Victory!!!  ";
 	cout << '\a';
 }         // gameOver
+
+bool checkWinner(string Data[]) {
+	if (winCondition(Data, "X")) {
+		cout << "Player X has won!";
+		return(1);
+	}else if (winCondition(Data, "O")) {
+		cout << "Player O has won!";
+		return(1);
+	} else {
+		return(0);
+	}
+} // checkWinner
